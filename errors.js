@@ -1,30 +1,29 @@
 var util = require('util');
 
 
-function BaseError(level, message, constructor) {
+var BaseError = function (level, message, constructor) {
 	'use strict';
 
 	Error.captureStackTrace(this, constructor || this);
 	this.message = util.format('%s: %s', level, message);
-}
-
+};
 util.inherits(BaseError, Error);
 
 
-function info(message) {
+var info = function (message) {
 	'use strict';
 
 	return new BaseError('Minor', message);
-}
+};
 
-function warn(message) {
+var warn = function (message) {
 	'use strict';
 	return new BaseError('Major', message);
-}
+};
 
-function critical(message) {
+var critical = function (message) {
 	'use strict';
 	return new BaseError('Critical', message);
-}
+};
 
 module.exports = {info: info, warn: warn, critical: critical};

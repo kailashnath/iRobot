@@ -1,14 +1,17 @@
 var fs = require('fs'),
-	errors = require('./errors');
+	errors = require('./errors'),
+	robots = require('./robots');
 
 
 process.on('uncaughtException', function (err) {
+	'use strict';
+	console.log(err.stack);
 	console.log('%s', err);
 });
 
-var arguments = process.argv.splice(2);
+var args = process.argv.splice(2);
 
-if (arguments.length < 2) {
+if (args.length < 2) {
 	fs.readFile('./HELP', function (err, text) {
 		'use strict';
 		if (!err) {
@@ -19,5 +22,8 @@ if (arguments.length < 2) {
 		}
 	});
 } else {
-
+	var vehicle_type = args[0],
+		ticker = args[1];
+	var vehicle = robots.start(vehicle_type);
+	vehicle.loadDirections(ticker);
 }

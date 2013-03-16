@@ -14,6 +14,9 @@ Vehicle.prototype.move = function (direction) {
 
 Vehicle.prototype.loadDirections = function (ticker) {
 	'use strict';
+	if (!this.movements) {
+		throw errors.critical('This vehicle needs to know it\'s movemements before it can accept directions');
+	}
 	var directions = ticker.split(''),
 		self = this,
 		vehicle_movements = this.movements.map(function (move) { return move.code; });
