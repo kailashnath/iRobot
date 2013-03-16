@@ -10,8 +10,6 @@ var Move = function (code, axis, units) {
 
 
 module.exports = {
-	RIGHT: new Move('R', axis.X, 1),
-	LEFT: new Move('L', axis.X, -1),
 	FORWARD: new Move('F', axis.Y, 1),
 	BACKWARD: new Move('B', axis.Y, -1),
 	UPWARD: new Move('U', axis.Z, 10),

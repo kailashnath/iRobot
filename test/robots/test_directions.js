@@ -4,20 +4,6 @@ var expect = require('chai').expect,
 
 
 describe('directions', function () {
-	it('.RIGHT should be along X axis with 1 unit', function () {
-		var x = direction.RIGHT;
-		expect(x.code).to.be.eql('R');
-		expect(x.axis).to.be.eql(axis.X);
-		expect(x.units).to.be.eql(1);
-	});
-
-	it('.LEFT should be along X axis with -1 unit', function () {
-		var l = direction.LEFT;
-		expect(l.code).to.be.eql('L');
-		expect(l.axis).to.be.eql(axis.X);
-		expect(l.units).to.be.eql(-1);
-	});
-
 	it('.FORWARD should be along Y axis with 1 unit', function () {
 		var f = direction.FORWARD;
 		expect(f.code).to.be.eql('F');
