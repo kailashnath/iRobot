@@ -1,21 +1,18 @@
 var errors = require('../errors'),
 	tank = require('./tank'),
-	uav = require('./uav');
-
-
-var AVAILABLE_VEHICLES = {ground: tank, air: uav};
+	uav = require('./uav'),
+	AVAILABLE_VEHICLES = {ground: tank, air: uav};
 
 
 var start = function (vehicle_type, callback) {
 	'use strict';
+	var Vehicle = AVAILABLE_VEHICLES[vehicle_type];
 
-	var vehicle_exists = Object.keys(AVAILABLE_VEHICLES).indexOf(vehicle_type) > -1;
-	if (!vehicle_exists) {
+	if (!Vehicle) {
 		throw errors.warn('We do not have this type of vehicle: ' + vehicle_type);
 	}
 
-	var vehicle = AVAILABLE_VEHICLES[vehicle_type];
-	return (new vehicle());
+	return (new Vehicle());
 };
 
 
