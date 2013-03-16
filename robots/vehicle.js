@@ -7,16 +7,35 @@ var Vehicle = function () {
 	'use strict';
 	this.grid = grid.create();
 	this.movements = [];
+	this.current_angle = 0;
 };
 
 Vehicle.prototype.move = function (direction) {
 	'use strict';
+	direction.useAngle(this.currentAngle());
 	this.grid.move(direction);
 };
 
-Vehicle.prototype.turn = function (angle) {
+Vehicle.prototype.turn = function (turnObj) {
 	'use strict';
-	this.grid.turn(angle);
+	this.current_angle += turnObj.angle;
+};
+
+Vehicle.prototype.position = function () {
+	'use strict';
+	return this.grid.currentPosition();
+};
+
+Vehicle.prototype.currentAngle = function () {
+	'use strict';
+
+	var angle = (this.current_angle % 360);
+
+	// turn negative angle to positive
+	if (angle < 0) {
+		angle = 360 + angle;
+	}
+	return angle;
 };
 
 Vehicle.prototype.loadDirections = function (ticker) {

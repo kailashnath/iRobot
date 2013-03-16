@@ -1,5 +1,6 @@
 var expect = require('chai').expect,
 	directions = require('../../robots/directions'),
+	turn = require('../../robots/turn'),
 	Vehicle = require('../../robots/vehicle');
 
 
@@ -56,4 +57,64 @@ describe('Vehicle', function () {
 		expect(correctDirection).to.not.throw(Error);
 	});
 
+	it('should be able to turn in it\'s own axis in 360 degrees', function () {
+		var turnRight = function () {
+			vehicle.turn(turn.RIGHT);
+		}, turnLeft = function () {
+			vehicle.turn(turn.LEFT);
+		};
+
+		turnRight();
+		expect(vehicle.currentAngle()).to.be.eql(90);
+
+		turnRight();
+		expect(vehicle.currentAngle()).to.be.eql(180);
+
+		turnRight();
+		expect(vehicle.currentAngle()).to.be.eql(270);
+
+		turnRight();
+		expect(vehicle.currentAngle()).to.be.eql(0);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(270);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(180);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(90);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(0);
+
+	});
+
+	it('should be able to turn clockwise/anticlockwise in 360 degrees with angle being always positive', function () {
+		var turnRight = function () {
+			vehicle.turn(turn.RIGHT);
+		}, turnLeft = function () {
+			vehicle.turn(turn.LEFT);
+		};
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(270);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(180);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(90);
+
+		turnLeft();
+		expect(vehicle.currentAngle()).to.be.eql(0);
+	});
+
+	it('should not let the object move into negative co-ordinates in any angle', function () {
+		var moveNegative = function () {
+			vehicle.move(directions.BACKWARD);
+		};
+		expect(vehicle.currentAngle()).to.be.eql(0);
+		expect(moveNegative).to.throw(Error);
+	});
 });
