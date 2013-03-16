@@ -1,5 +1,6 @@
 var errors = require('../errors'),
 	turn = require('./turn'),
+	directions = require('./directions'),
 	grid = require('./grid');
 
 
@@ -12,13 +13,21 @@ var Vehicle = function () {
 
 Vehicle.prototype.move = function (direction) {
 	'use strict';
-	var newDirection = direction.useAngle(this.currentAngle());
-	this.grid.move(newDirection);
+	if (directions.isValid(direction)) {
+		var newDirection = direction.useAngle(this.currentAngle());
+		this.grid.move(newDirection);
+	} else {
+		throw errors.warn("Vehicle cannot move in direction: " + direction);
+	}
 };
 
 Vehicle.prototype.turn = function (turnObj) {
 	'use strict';
-	this.current_angle += turnObj.angle;
+	if (turn.isValid(turnObj)) {
+		this.current_angle += turnObj.angle;
+	} else {
+		throw errors.warn("Vehicle cannot turn: " + turnObj);
+	}
 };
 
 Vehicle.prototype.position = function () {

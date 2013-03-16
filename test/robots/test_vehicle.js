@@ -115,7 +115,22 @@ describe('Vehicle', function () {
 			vehicle.move(directions.BACKWARD);
 		};
 		expect(vehicle.currentAngle()).to.be.eql(0);
-		console.log(vehicle.position());
 		expect(moveNegative).to.throw(Error);
+	});
+
+
+	it('should throw an error if the turn object is invalid', function () {
+		var invalidTurn = function () {
+			vehicle.turn(null);
+		};
+
+		expect(invalidTurn).to.throw(Error, /^Major: Vehicle cannot turn: null$/);
+	});
+
+	it('should throw an error if asked to move in invalid direction', function () {
+		var invalidDirection = function () {
+			vehicle.move(null);
+		};
+		expect(invalidDirection).to.throw(Error);
 	});
 });

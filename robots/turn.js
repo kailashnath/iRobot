@@ -6,4 +6,11 @@ var Turn = function (code, angle) {
 };
 
 
-module.exports = {RIGHT: new Turn('R', 90), LEFT: new Turn('L', -90)};
+module.exports = {
+	RIGHT: new Turn('R', 90),
+	LEFT: new Turn('L', -90),
+	isValid: function (obj) {
+		'use strict';
+		return (obj instanceof Turn);
+	}
+};
