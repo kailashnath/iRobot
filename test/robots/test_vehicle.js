@@ -111,11 +111,11 @@ describe('Vehicle', function () {
 	});
 
 	it('should not let the object move into negative co-ordinates in any angle', function () {
-		// var moveNegative = function () {
-		// 	vehicle.move(directions.BACKWARD);
-		// };
-		// expect(vehicle.currentAngle()).to.be.eql(0);
-		// console.log(vehicle.position());
-		// expect(moveNegative).to.throw(Error);
+		var moveNegative = function () {
+			vehicle.move(directions.BACKWARD);
+		};
+		expect(vehicle.currentAngle()).to.be.eql(0);
+		console.log(vehicle.position());
+		expect(moveNegative).to.throw(Error);
 	});
 });
