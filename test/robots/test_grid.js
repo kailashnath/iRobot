@@ -67,4 +67,14 @@ describe('Grid', function () {
 
 	});
 
+	it('should raise an error if the object tends to move away from the grid', function () {
+		var moveInWrongDirection = function () {
+			vehicle.move(directions.FORWARD);
+		};
+
+		vehicle.turn(turn.LEFT);
+		expect(vehicle.currentAngle()).to.be.eql(270);
+		expect(moveInWrongDirection).to.throw(Error);
+	});
+
 });
