@@ -19,4 +19,10 @@ test-grid:
 		./test/robots/test_grid.js
 	@echo $@
 
-test: test-robots test-grid
+test-uav:
+	$(JSLINT) ./robots/uav.js
+	$(MOCHA) \
+		./test/robots/test_uav.js
+	@echo $@
+
+test: test-robots test-grid test-uav

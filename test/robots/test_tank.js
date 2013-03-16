@@ -20,18 +20,16 @@ describe('Tank', function () {
 	});
 
 	it('should be able to move only in RIGHT, LEFT, FORWARD and BACKWARD directions', function () {
-		expect(tank.movements).to.be.eql([directions.RIGHT, directions.LEFT, directions.FORWARD, directions.BACKWARD]);
+		expect(tank.movements).to.be.eql([directions.FORWARD, directions.BACKWARD]);
 	});
 
 	it('should throw an error if asked to move in UPWARD/DOWNWARD directions', function () {
-		var moveUp = function (){
-			tank.loadDirections(directions.UPWARD.code);
-		}, moveDown = function () {
-			tank.loadDirections(directions.DOWNWARD.code);
-		};
-
-		expect(moveUp).to.throw(Error);
-		expect(moveDown).to.throw(Error);
+		tank.loadInstructions('U', function (err) {
+			expect(err).to.be.instanceof(Error);
+		});
+		tank.loadInstructions('B', function (err) {
+			expect(err).to.be.instanceof(Error);
+		});
 	});
 
 });

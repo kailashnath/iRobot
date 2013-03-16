@@ -76,7 +76,9 @@ describe('Grid', function () {
 		expect(vehicle.position()).to.be.eql([0, 0, 0]);
 		vehicle.turn(turn.LEFT);
 		expect(vehicle.currentAngle()).to.be.eql(270);
-		expect(moveInWrongDirection).to.throw(Error);
+		vehicle.move(directions.FORWARD, function (err) {
+			expect(err).to.be.instanceof(Error);
+		});
 	});
 
 });

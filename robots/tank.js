@@ -6,7 +6,7 @@ var util = require('util'),
 var Tank = function () {
 	'use strict';
 	Vehicle.call(this);
-	this.movements = [directions.RIGHT, directions.LEFT, directions.FORWARD, directions.BACKWARD];
+	this.movements = [directions.FORWARD, directions.BACKWARD];
 };
 
 util.inherits(Tank, Vehicle);

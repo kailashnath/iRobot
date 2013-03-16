@@ -25,5 +25,7 @@ if (args.length < 2) {
 	var vehicle_type = args[0],
 		ticker = args[1];
 	var vehicle = robots.start(vehicle_type);
-	vehicle.loadDirections(ticker);
+	vehicle.loadInstructions(ticker, function (err) {
+		console.log(this.position());
+	});
 }

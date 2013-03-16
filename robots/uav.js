@@ -6,7 +6,7 @@ var util = require('util'),
 var UAV = function () {
 	'use strict';
 	Vehicle.call(this);
-	this.movements = [directions.RIGHT, directions.LEFT, directions.FORWARD, directions.UPWARD, directions.DOWNWARD];
+	this.movements = [directions.FORWARD, directions.UPWARD, directions.DOWNWARD];
 };
 
 util.inherits(UAV, Vehicle);

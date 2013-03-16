@@ -10,6 +10,9 @@ var Move = function (code, onaxis, units) {
 	this.axis = onaxis;
 
 	this.useAngle = function (angle) {
+		if (this.axis === axis.Z) {
+			return this;
+		}
 		var newMove = null;
 		if (angle === 0) {
 			newMove = new Move(self.code, axis.Y, self.units);

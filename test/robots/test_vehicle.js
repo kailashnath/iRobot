@@ -24,37 +24,37 @@ describe('Vehicle', function () {
 	});
 
 	it('should accept directions', function () {
-		expect(vehicle.loadDirections).to.be.function;
+		expect(vehicle.loadInstructions).to.be.function;
 	});
 
-	it('should be capable of turning both RIGHT and LEFT', function () {
-		var turnRight = function () {
-			vehicle.loadDirections('RLLLRRLRLLR');
-		};
-		expect(turnRight).to.not.throw(Error);
+	it('should be capable of turning both RIGHT and LEFT', function (done) {
+		vehicle.loadInstructions('RLLLRRLRLLR', function (error) {
+			expect(error).to.be.null;
+			done();
+		});
 	});
 
-	it('should not accept directions if no movements are defined for it', function () {
-		var callDirections = function () {
-			vehicle.loadDirections('RU');
-		};
-		expect(callDirections).to.throw(Error);
+	it('should not accept directions if no movements are defined for it', function (done) {
+		vehicle.loadInstructions('RU', function (error) {
+			expect(error).to.be.instanceof(Error);
+			done();
+		});
 	});
 
 	it('should not move in the direction not mentioned in its movements', function () {
 		vehicle.movements = [directions.UPWARD, directions.DOWNWARD];
 		var wrongDirection = function () {
-			vehicle.loadDirections('FB');
+			vehicle.loadInstructions('FB');
 		};
 		expect(wrongDirection).to.throw(Error);
 	});
 
-	it('should move without error if the given directions are valid for the vehicle', function () {
+	it('should move without error if the given directions are valid for the vehicle', function (done) {
 		vehicle.movements = [directions.UPWARD, directions.DOWNWARD];
-		var correctDirection = function () {
-			vehicle.loadDirections('UD');
-		};
-		expect(correctDirection).to.not.throw(Error);
+		vehicle.loadInstructions('UD', function (err) {
+			expect(err).to.be.null;
+			done();
+		});
 	});
 
 	it('should be able to turn in it\'s own axis in 360 degrees', function () {
@@ -111,26 +111,42 @@ describe('Vehicle', function () {
 	});
 
 	it('should not let the object move into negative co-ordinates in any angle', function () {
-		var moveNegative = function () {
-			vehicle.move(directions.BACKWARD);
-		};
 		expect(vehicle.currentAngle()).to.be.eql(0);
-		expect(moveNegative).to.throw(Error);
+		vehicle.move(directions.BACKWARD, function (err) {
+			expect(err).to.be.instanceof(Error);
+		});
 	});
 
 
-	it('should throw an error if the turn object is invalid', function () {
-		var invalidTurn = function () {
-			vehicle.turn(null);
-		};
+	it('should throw an error if the turn object is invalid', function (done) {
+		vehicle.turn(null, function (err) {
+			expect(err).to.be.instanceof(Error);
+			done();
+		});
 
-		expect(invalidTurn).to.throw(Error, /^Major: Vehicle cannot turn: null$/);
 	});
 
-	it('should throw an error if asked to move in invalid direction', function () {
-		var invalidDirection = function () {
-			vehicle.move(null);
-		};
-		expect(invalidDirection).to.throw(Error);
+	it('should throw an error if asked to move in invalid direction', function (done) {
+		vehicle.move(null, function (err) {
+			expect(err).to.be.instanceof(Error);
+			done();
+		});
+	});
+
+	it('should give the appropriate position if the vehicle rotates over it\'s own axis', function (done) {
+		vehicle.loadInstructions('RR', function (err) {
+			expect(err).to.be.null;
+			expect(this.facing()).to.be.eql('South');
+			done();
+		});
+	});
+
+	it('should give the facing even after it moves', function (done) {
+		vehicle.movements = [directions.FORWARD, directions.UPWARD, directions.DOWNWARD];
+		vehicle.loadInstructions('FFRUFFRFRLD', function (err) {
+			expect(err).to.be.null;
+			expect(this.facing()).to.be.eql('South');
+			done();
+		});
 	});
 });
