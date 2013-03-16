@@ -21,12 +21,6 @@ Grid.prototype.move = function (direction) {
 	this[direction.axis] = moved_position;
 };
 
-
-Grid.prototype.turn = function (turn) {
-	'use strict';
-	this.current_angle += turn.angle;
-};
-
 Grid.prototype.currentPosition = function () {
 	'use strict';
 	var self = this;
