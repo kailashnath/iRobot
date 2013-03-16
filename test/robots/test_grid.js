@@ -15,6 +15,7 @@ describe('Grid', function () {
 	});
 	afterEach(function () {
 		gridObject = null;
+		vehicle = null;
 	});
 
 	it('should have co-ordinates (0,0,0) for any new instance of Grid', function () {
@@ -72,6 +73,7 @@ describe('Grid', function () {
 			vehicle.move(directions.FORWARD);
 		};
 
+		expect(vehicle.position()).to.be.eql([0, 0, 0]);
 		vehicle.turn(turn.LEFT);
 		expect(vehicle.currentAngle()).to.be.eql(270);
 		expect(moveInWrongDirection).to.throw(Error);

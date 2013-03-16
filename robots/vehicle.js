@@ -12,8 +12,8 @@ var Vehicle = function () {
 
 Vehicle.prototype.move = function (direction) {
 	'use strict';
-	direction.useAngle(this.currentAngle());
-	this.grid.move(direction);
+	var newDirection = direction.useAngle(this.currentAngle());
+	this.grid.move(newDirection);
 };
 
 Vehicle.prototype.turn = function (turnObj) {

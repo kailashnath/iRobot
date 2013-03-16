@@ -13,4 +13,10 @@ test-robots:
 		./test/robots/*.js
 	@echo $@
 
-test: test-robots
+test-grid:
+	$(JSLINT) ./robots/grid.js
+	$(MOCHA) \
+		./test/robots/test_grid.js
+	@echo $@
+
+test: test-robots test-grid

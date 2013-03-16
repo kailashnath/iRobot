@@ -9,20 +9,19 @@ var Move = function (code, onaxis, units) {
 	this.axis = onaxis;
 
 	this.useAngle = function (angle) {
+		var newMove = null;
 		if (angle === 0) {
-			self.axis = axis.Y;
+			newMove = new Move(self.code, axis.Y, self.units);
 		} else if (angle === 90) {
-			self.axis = axis.X;
+			newMove = new Move(self.code, axis.X, self.units);
 		} else if (angle === 180) {
-			self.axis = axis.Y;
-			self.units = -(self.units);
+			newMove = new Move(self.code, axis.Y, -(self.units));
 		} else if (angle === 270) {
-			self.axis = axis.X;
-			self.units = -(self.units);
+			newMove = new Move(self.code, axis.X, -(self.units));
 		}
+		return newMove;
 	};
 };
-
 
 module.exports = {
 	FORWARD: new Move('F', axis.Y, 1),
