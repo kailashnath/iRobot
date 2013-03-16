@@ -1,15 +1,15 @@
 
+var Axis = {X: 'x', Y: 'y', Z: 'z'};
 
-var Grid = function (a) {
+var Grid = function () {
 	'use strict';
-	this.x = 0;
-	this.y = 0;
-	this.z = 0;
+	this[Axis.X] = 0;
+	this[Axis.Y] = 0;
+	this[Axis.Z] = 0;
 };
 
 Grid.prototype.move = function (direction) {
 	'use strict';
-	//console.log(direction.units);
 };
 
 
@@ -18,5 +18,6 @@ module.exports = {
 		'use strict';
 
 		return new Grid();
-	}
+	},
+	axis: Axis
 };

@@ -22,10 +22,11 @@ Vehicle.prototype.loadDirections = function (ticker) {
 		vehicle_movements = this.movements.map(function (move) { return move.code; });
 
 	directions.forEach(function (direction) {
-		if (vehicle_movements.indexOf(direction) < 0) {
+		var move_index = vehicle_movements.indexOf(direction);
+		if (move_index < 0) {
 			throw errors.critical("This vehicle cannot move in: " + direction);
 		}
-		self.move(direction);
+		self.move(self.movements[move_index]);
 	});
 };
 

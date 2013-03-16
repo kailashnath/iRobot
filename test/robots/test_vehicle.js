@@ -1,5 +1,4 @@
-var assert = require('assert'),
-	expect = require('chai').expect,
+var expect = require('chai').expect,
 	directions = require('../../robots/directions'),
 	Vehicle = require('../../robots/vehicle');
 
