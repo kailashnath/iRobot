@@ -5,11 +5,13 @@ var errors = require('../errors'),
 	Ticker = require('../ticker');
 
 
-var Vehicle = function (x, y, z) {
+var Vehicle = function (driver) {
 	'use strict';
-	this.grid = grid.create(x, y, z);
+	this.soldier = driver || 'Soldier';
+	this.grid = grid.create();
 	this.movements = [];
 	this.current_angle = 0;
+	console.log(this.soldier + ' reporting captain!');
 };
 
 Vehicle.prototype.move = function (direction, callback) {
@@ -21,10 +23,10 @@ Vehicle.prototype.move = function (direction, callback) {
 			newDirection = direction.useAngle(this.currentAngle());
 			this.grid.move(newDirection);
 		} else {
-			throw errors.warn("Vehicle cannot move in direction: " + direction);
+			throw errors.captain(this.soldier, "Vehicle cannot move in direction: " + direction);
 		}
 	} catch (e) {
-		err = e;
+		err = errors.captain(this.soldier, e);
 	}
 	if (!!callback) {
 		callback.call(this, err);
@@ -38,7 +40,7 @@ Vehicle.prototype.turn = function (turnObj, callback) {
 	if (turn.isValid(turnObj)) {
 		this.current_angle += turnObj.angle;
 	} else {
-		err = errors.warn("Vehicle cannot turn: " + turnObj);
+		err = errors.captain(this.soldier, "Vehicle cannot turn: " + turnObj);
 	}
 
 	if (!!callback) {
@@ -86,11 +88,11 @@ Vehicle.prototype.loadInstructions = function (ticker, onComplete) {
 				// as the code wasn't for angle, check if the code meant to move
 				if (move_index < 0) {
 					if (code === directions.UPWARD.code) {
-						next(errors.captain("I need thrusters to fly"));
+						next(errors.captain(self.soldier, "I need thrusters to fly"));
 						return;
 					}
 					// if none of them, then throw an error
-					next(errors.critical("This vehicle cannot execute your command code: " + code));
+					next(errors.captain(self.soldier, "This vehicle cannot execute your command code: " + code));
 					return;
 				}
 

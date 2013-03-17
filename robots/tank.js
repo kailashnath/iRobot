@@ -3,9 +3,9 @@ var util = require('util'),
 	Vehicle = require('./vehicle');
 
 
-var Tank = function () {
+var Tank = function (soldier) {
 	'use strict';
-	Vehicle.call(this);
+	Vehicle.call(this, soldier);
 	this.movements = [directions.FORWARD, directions.BACKWARD];
 };
 

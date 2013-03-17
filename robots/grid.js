@@ -1,6 +1,3 @@
-var errors = require('../errors'),
-	util = require('util');
-
 
 var Axis = {X: 'x', Y: 'y', Z: 'z'};
 
@@ -17,9 +14,9 @@ Grid.prototype.move = function (direction) {
 		moved_position = current_position_by_axis + direction.units;
 	if (moved_position < 0) {
 		if (direction.axis === Axis.Z) {
-			throw errors.captain('Are you sure you want me to crash');
+			throw 'Are you sure you want me to crash';
 		} else {
-			throw errors.captain('Sorry a soldier can\'t go out of the war zone');
+			throw 'Sorry a soldier can\'t go out of the war zone';
 		}
 	}
 	this[direction.axis] = moved_position;

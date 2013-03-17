@@ -26,10 +26,10 @@ var critical = function (message) {
 	return new BaseError('Critical', message);
 };
 
-var captain = function (message) {
+var captain = function (soldier, message) {
 	'use strict';
 	// the fun parts
-	message += ' captain!';
+	message = soldier + ' -> ' + message + ' captain!';
 	return critical(message);
 };
 

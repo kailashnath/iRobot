@@ -23,8 +23,8 @@ if (args.length < 2) {
 } else {
 	var vehicle_type = args[0],
 		ticker = args[1],
-		vehicle = robots.allot(vehicle_type);
-	vehicle.loadInstructions(ticker, function (err) {
+		vehicle_1 = robots.allot(vehicle_type);
+	vehicle_1.loadInstructions(ticker, function (err) {
 		'use strict';
 		if (err) {
 			console.log(err);
