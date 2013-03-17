@@ -1,0 +1,3 @@
+To run the game you need to execute the command in the below format:
+
+node run.js (ground|air) (FBUDRL)+
