@@ -1,0 +1,34 @@
+xInstructions to run:
+* Please go through the help text!
+
+Dependecies:
+* chaijs
+* expect
+* mocha
+* jslint
+
+
+Running the test suite:
+* make test
+
+
+Thanks to:
+* http://listofrandomnames.com/ for giving some random names for me to use for my virtual heroes.
+
+
+References:
+* chaijs -- this is just my second project using BDD and looks like it's really helping me improve the quality
+* nodejs documentation -- I always tend to refer back as I'm always left with somethings to read
+* Google for helping me find answers to some of my questions
+
+
+Apologies:
+* If the code sucks
+* If the logic sucks
+* If everything about this sucks
+
+
+My thought process images can be seen in the images folder
+
+
+Hope you have some fun playing around :-) at least for a couple of seconds
