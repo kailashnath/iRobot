@@ -1,5 +1,21 @@
-xInstructions to run:
+Instructions to run:
 * Please go through the help text!
+
+Story:
+* There are two characters in the game, one is the captain and the other is the soldier
+* The captain can allot a vehicle to one of his soldiers and load a give a bunch of codes to the vehicle
+* In case of any logically bad code the soldier talks out to the captain, like
+ -> Eg: Give the command to move upwards for a ground vehicle
+       Response: Critical: Joe -> I need thrusters to fly captain!
+* There are two kinds of vehicles, ground based and aerial based specifically a tank and a uav (controlled from a command centre)
+* Here the grid is considered to be a war zone, so if the code says something like 'LF'
+  Response: Critical: Tommy -> Sorry a soldier can't go out of the war zone captain!
+* So once a vehicle is allotted it's put into the war zone and cannot move out of it!
+* There are a few more messages in the system hope that you find it :-)
+
+
+
+===========================================================================================================================================
 
 Dependecies:
 * chaijs
@@ -28,7 +44,7 @@ Apologies:
 * If everything about this sucks
 
 
-My thought process images can be seen in the images folder
+My thought process images can be seen in the images folder!
 
 
-Hope you have some fun playing around :-) at least for a couple of seconds
+Hope you have some fun playing around :-)
