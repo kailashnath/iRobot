@@ -25,4 +25,4 @@ test-uav:
 		./test/robots/test_uav.js
 	@echo $@
 
-test: test-robots test-grid test-uav
+test: lint test-robots

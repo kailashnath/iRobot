@@ -27,8 +27,8 @@ var critical = function (message) {
 };
 
 var captain = function (message) {
-	// the fun parts
 	'use strict';
+	// the fun parts
 	message += ' captain!';
 	return critical(message);
 };

@@ -22,11 +22,15 @@ if (args.length < 2) {
 	});
 } else {
 	var vehicle_type = args[0],
-		ticker = args[1];
-	var vehicle = robots.allot(vehicle_type);
+		ticker = args[1],
+		vehicle = robots.allot(vehicle_type);
 	vehicle.loadInstructions(ticker, function (err) {
-		console.log(err);
-		console.log(this.position());
-		console.log(this.facing());
+		'use strict';
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("Current position: " + this.position());
+			console.log("Current facing: " + this.facing());
+		}
 	});
 }

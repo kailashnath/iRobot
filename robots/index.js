@@ -9,7 +9,7 @@ var allot = function (vehicle_type, callback) {
 	var Vehicle = AVAILABLE_VEHICLES[vehicle_type];
 
 	if (!Vehicle) {
-		throw errors.warn('We do not have this type of vehicle: ' + vehicle_type);
+		throw errors.captain('We are running short of "' + vehicle_type + '" vehicles ');
 	}
 
 	return (new Vehicle());

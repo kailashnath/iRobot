@@ -2,6 +2,7 @@ var errors = require('./errors');
 
 
 var Ticker = function (code) {
+	'use strict';
 	if (!code || code.length === 0) {
 		throw errors.warn("Invalid ticker: " + code);
 	}

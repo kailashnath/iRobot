@@ -65,7 +65,8 @@ Vehicle.prototype.currentAngle = function () {
 
 Vehicle.prototype.facing = function () {
 	'use strict';
-	return {0: 'North', 90: 'East', 180: 'South', 270: 'West'}[this.currentAngle()];
+	return {0: 'North', 90: 'East',
+			180: 'South', 270: 'West'}[this.currentAngle()];
 };
 
 Vehicle.prototype.loadInstructions = function (ticker, onComplete) {
