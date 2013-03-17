@@ -5,9 +5,9 @@ var errors = require('../errors'),
 	Ticker = require('../ticker');
 
 
-var Vehicle = function () {
+var Vehicle = function (x, y, z) {
 	'use strict';
-	this.grid = grid.create();
+	this.grid = grid.create(x, y, z);
 	this.movements = [];
 	this.current_angle = 0;
 };
@@ -84,6 +84,10 @@ Vehicle.prototype.loadInstructions = function (ticker, onComplete) {
 			if (angle_index < 0) {
 				// as the code wasn't for angle, check if the code meant to move
 				if (move_index < 0) {
+					if (code === directions.UPWARD.code) {
+						next(errors.captain("I need thrusters to fly"));
+						return;
+					}
 					// if none of them, then throw an error
 					next(errors.critical("This vehicle cannot execute your command code: " + code));
 					return;

@@ -26,4 +26,11 @@ var critical = function (message) {
 	return new BaseError('Critical', message);
 };
 
-module.exports = {info: info, warn: warn, critical: critical};
+var captain = function (message) {
+	// the fun parts
+	'use strict';
+	message += ' captain!';
+	return critical(message);
+};
+
+module.exports = {info: info, warn: warn, critical: critical, captain: captain};

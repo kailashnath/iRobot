@@ -4,7 +4,7 @@ var errors = require('../errors'),
 	AVAILABLE_VEHICLES = {ground: tank, air: uav};
 
 
-var start = function (vehicle_type, callback) {
+var allot = function (vehicle_type, callback) {
 	'use strict';
 	var Vehicle = AVAILABLE_VEHICLES[vehicle_type];
 
@@ -16,4 +16,4 @@ var start = function (vehicle_type, callback) {
 };
 
 
-module.exports = {start: start};
+module.exports = {allot: allot};

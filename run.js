@@ -5,7 +5,6 @@ var fs = require('fs'),
 
 process.on('uncaughtException', function (err) {
 	'use strict';
-	console.log(err.stack);
 	console.log('%s', err);
 });
 
@@ -24,8 +23,10 @@ if (args.length < 2) {
 } else {
 	var vehicle_type = args[0],
 		ticker = args[1];
-	var vehicle = robots.start(vehicle_type);
+	var vehicle = robots.allot(vehicle_type);
 	vehicle.loadInstructions(ticker, function (err) {
+		console.log(err);
 		console.log(this.position());
+		console.log(this.facing());
 	});
 }

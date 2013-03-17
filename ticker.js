@@ -1,5 +1,4 @@
-var errors = require('./errors'),
-	async = require('async');
+var errors = require('./errors');
 
 
 var Ticker = function (code) {
